@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exercice d'entraînement — Jour 2</title>
+<style>
+:root{--prune:#8C1E70;--dark:#5E1349;--light:#F4E6EE;--rose:#C77BAA;--vert:#283C28;--gris:#3C3C3C;--gmoy:#8A7A85;--trame:#E8DCE5;--fond:#FAF6F8;--ok:#2F7A4F;--ko:#B23B3B;--mid:#B5852A}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:Calibri,"Segoe UI",Carlito,Arial,sans-serif;background:var(--fond);color:var(--gris);font-size:16px;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px 40px}
+header.top{background:var(--dark);color:#fff;padding:22px 0 20px;border-bottom:5px solid var(--rose)}
+header.top .kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);font-weight:700}
+header.top h1{margin:6px 0 4px;font-size:28px;line-height:1.2}
+header.top .sub{color:var(--trame);font-style:italic}
+.card{background:#fff;border:1px solid var(--trame);border-radius:10px;padding:20px 22px;margin:18px 0;box-shadow:0 1px 3px rgba(94,19,73,.06)}
+.card h2{margin:0 0 6px;color:var(--dark);font-size:21px}
+.card h3{margin:14px 0 6px;color:var(--prune);font-size:17px}
+.consigne{background:var(--light);border-left:5px solid var(--prune);padding:12px 16px;border-radius:0 8px 8px 0;margin:10px 0 14px}
+.tag{display:inline-block;background:var(--light);color:var(--prune);font-weight:700;font-size:12px;padding:2px 9px;border-radius:20px;margin-right:6px}
+.item{display:grid;grid-template-columns:1fr 290px;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--trame)}
+.item:first-of-type{border-top:0}
+.item .q{font-weight:600}
+select,input[type=text],textarea{font:inherit;color:var(--gris);border:1.5px solid var(--trame);border-radius:7px;padding:8px 10px;background:#fff;width:100%}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--rose);border-color:var(--prune)}
+textarea{min-height:130px;resize:vertical}
+select.ok{border-color:var(--ok);background:#eef7f1}select.ko{border-color:var(--ko);background:#fbeeee}
+.fb{grid-column:1/-1;font-size:14px;padding:8px 12px;border-radius:7px;display:none}
+.fb.show{display:block}.fb.ok{background:#eef7f1;border-left:4px solid var(--ok)}.fb.ko{background:#fbeeee;border-left:4px solid var(--ko)}
+.btn{font:inherit;font-weight:700;border:0;border-radius:8px;padding:11px 20px;cursor:pointer;background:var(--prune);color:#fff}
+.btn:hover{background:var(--dark)}
+.btn[disabled]{background:#cbbfc7;cursor:not-allowed}
+.btn.sec{background:#fff;color:var(--prune);border:2px solid var(--prune)}
+.btn.done{background:var(--ok)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.score{font-weight:700;color:var(--dark)}
+.pill{display:inline-block;padding:4px 12px;border-radius:20px;background:var(--light);color:var(--prune);font-weight:700}
+.progress{height:8px;background:var(--trame);border-radius:6px;overflow:hidden;margin:10px 0}
+.progress>div{height:100%;background:var(--prune);width:0;transition:width .3s}
+table.t{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0}
+table.t th{background:var(--dark);color:#fff;text-align:left;padding:8px}
+table.t td{border-bottom:1px solid var(--trame);padding:8px;vertical-align:top}
+table.t tr:nth-child(even) td{background:var(--fond)}
+.muted{color:var(--gmoy);font-size:14px}
+.big{font-size:44px;font-weight:800;color:var(--prune);line-height:1}
+.hidden{display:none!important}
+footer.foot{text-align:center;color:var(--gmoy);font-size:12px;padding:20px 0}
+.warn{background:#fff7e8;border-left:5px solid var(--mid);padding:10px 14px;border-radius:0 8px 8px 0}
+.counter{font-size:13px;color:var(--gmoy);text-align:right}
+@media (max-width:700px){.item{grid-template-columns:1fr}header.top h1{font-size:23px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="kick">TMK Performances · Eco Conso Habitat — Organisation et gestion du secteur · Jour 2</div><h1>Exercice d'entraînement — Jour 2</h1><div class="sub">Organiser et gérer efficacement son secteur · 4 ateliers</div></div></header>
+<main class="wrap">
+
+<div class="card"><div class="consigne"><b>Exercice d'entraînement, non noté.</b> Réalisez chaque atelier à la fin de la séquence indiquée. Quand vous validez un atelier, vos réponses sont <b>figées</b> et la correction s'affiche : impossible de les modifier ensuite. Pour tout recommencer, utilisez « Rejouer tout l'exercice ».</div>
+<div class="row" style="justify-content:space-between"><span>Ateliers validés : <span class="pill" id="nbv">0 / 4</span></span><span>Score cumulé : <span class="pill" id="tot">—</span></span></div>
+<div class="progress"><div id="bar"></div></div></div>
+<div id="ateliers"></div>
+<div class="card"><div class="row" style="justify-content:center"><button class="btn sec" id="replay">Rejouer tout l'exercice</button></div></div>
+</main>
+<footer class="foot">TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+<script>
+
+var DATA=[{"seq":"S02","titre":"Atelier A1 — Le bon créneau","consigne":"Pour chaque activité, choisissez le moment le plus adapté.","options":["Matin (9 h – 12 h)","Midi (12 h – 14 h)","Après-midi (14 h – 18 h)","Lundi ou vendredi"],"items":[{"txt":"Prospection terrain dans la zone prioritaire","c":0,"e":"Les meilleures heures pour l'action la plus dure."},{"txt":"Déplacement vers la zone de l'après-midi et organisation","c":1,"e":"Midi est un temps de transition."},{"txt":"Relances téléphoniques et RDV fixés","c":2,"e":"L'après-midi consolide : relances et RDV."},{"txt":"Préparation des zones et des trajets de la semaine","c":3,"e":"Le lundi prépare, le vendredi optimise."},{"txt":"Mise à jour du tableau de suivi et bilan de la semaine","c":3,"e":"Le vendredi : suivi, relances, optimisation."}],"bonus":{"txt":"Vous devez joindre M. Garnier, actif. Quel créneau privilégier ?","options":["10 h","12 h 30","15 h","Après 17 h 30"],"c":3,"e":"Les actifs sont joignables en fin de journée : adapter ses horaires à la cible."}},{"seq":"S03","titre":"Atelier A2 — Travail en zone","consigne":"Pour chaque pratique, indiquez s'il s'agit de travail en zone ou de ping-pong terrain.","options":["Travail en zone","Ping-pong terrain"],"items":[{"txt":"Faire un bloc de rues complet avant de changer de quartier","c":0,"e":"On épuise une zone avant d'en changer."},{"txt":"Revenir trois fois dans la semaine dans la même rue sans raison","c":1,"e":"Retours multiples sans logique."},{"txt":"Préparer la veille l'ordre des rues à parcourir","c":0,"e":"Anticiper les trajets."},{"txt":"Traverser la commune pour un seul contact « au cas où »","c":1,"e":"Déplacement sans rentabilité."},{"txt":"Regrouper deux zones voisines sur la même journée","c":0,"e":"Regrouper ses actions, limiter les trajets."},{"txt":"Choisir chaque matin une zone au hasard","c":1,"e":"Aucune stratégie géographique."}],"bonus":{"txt":"Tilleuls–Peupliers : 1,5 km ; Tilleuls–Clos des Érables : 7 km. Quelle zone associer aux Tilleuls le même jour ?","options":["Le Clos des Érables","Les Peupliers","La Résidence du Parc","Aucune, changer de commune"],"c":1,"e":"Deux zones prioritaires voisines : moins de trajet, plus de portes."}},{"seq":"S04","titre":"Atelier A3 — La bonne relance","consigne":"Pour chaque prospect, choisissez l'action de suivi adaptée (matrice intérêt / timing).","options":["RDV immédiat","Relance planifiée (2-3 mois, date précise)","Relance courte (quelques jours)","Relance occasionnelle"],"items":[{"txt":"Intérêt fort, projet réel, veut avancer tout de suite","c":0,"e":"Verrouiller la rencontre tout de suite."},{"txt":"Intérêt fort, travaux prévus au printemps","c":1,"e":"Fort + long terme : relance à date précise."},{"txt":"Intérêt moyen, compare les offres d'ici 15 jours","c":2,"e":"Moyen + court terme : rappel rapide."},{"txt":"Intérêt moyen, « un jour, pas cette année »","c":3,"e":"Maintenir le contact sans pression."},{"txt":"Intérêt fort, « rappelez-moi dans un mois »","c":1,"e":"Relance planifiée à la date demandée."}],"bonus":{"txt":"Quelle phrase crée une autorisation de relance ?","options":["« Je vous rappellerai de toute façon. »","« Je peux revenir vers vous à ce moment-là ? »","« Il faut vous décider vite. »","« Vous avez mon numéro. »"],"c":1,"e":"La relance devient un rendez-vous accepté, pas une pression."}},{"seq":"S05","titre":"Atelier A4 — Réseau réel ou virtuel ?","consigne":"Classez chaque levier dans le réseau réel ou virtuel.","options":["Réseau réel","Réseau virtuel"],"items":[{"txt":"Le gérant de la quincaillerie du centre-bourg","c":0,"e":"Commerçant local : relation humaine directe."},{"txt":"Le groupe Facebook du quartier","c":1,"e":"L'amplificateur digital."},{"txt":"Les voisins d'un client qui vient d'accepter un RDV","c":0,"e":"Le cœur du réseau : le voisinage."},{"txt":"Un groupe WhatsApp d'habitants","c":1,"e":"Réseau virtuel."},{"txt":"Un artisan plombier du secteur","c":0,"e":"Partenaire local."},{"txt":"Votre profil LinkedIn professionnel","c":1,"e":"Crédibilité en ligne."}],"bonus":{"txt":"Quelle demande de recommandation respecte les trois règles (naturel, simple, sans pression) ?","options":["« Donnez-moi trois noms, s'il vous plaît. »","« Est-ce que vous connaissez quelqu'un autour de vous qui pourrait être intéressé ? »","« Si vous me donnez des noms, je vous fais une remise. »","« Vos voisins doivent forcément être intéressés. »"],"c":1,"e":"Question ouverte, naturelle, sans contrepartie ni pression."}}];
+var state=DATA.map(function(){return {done:false,score:0,max:0};});
+function h(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
+function render(){
+  var root=document.getElementById('ateliers');root.innerHTML='';
+  DATA.forEach(function(a,ai){
+    var items=a.items.map(function(it){return {txt:it.txt,options:a.options,c:it.c,e:it.e};});
+    if(a.bonus) items.push({txt:a.bonus.txt,options:a.bonus.options,c:a.bonus.c,e:a.bonus.e,bonus:true});
+    var html='<div class="card" id="at'+ai+'"><span class="tag">'+h(a.seq)+'</span><h2>'+h(a.titre)+'</h2><div class="consigne">'+h(a.consigne)+'</div>';
+    items.forEach(function(it,ii){
+      html+='<div class="item"><div class="q">'+(it.bonus?'<span class="tag">Question finale</span>':'')+h(it.txt)+'</div><select data-a="'+ai+'" data-i="'+ii+'"><option value="">— Choisir —</option>'+it.options.map(function(o,oi){return '<option value="'+oi+'">'+h(o)+'</option>';}).join('')+'</select><div class="fb" id="fb'+ai+'_'+ii+'"></div></div>';
+    });
+    html+='<div class="row"><button class="btn" id="val'+ai+'" disabled>Valider l\'atelier</button><span class="score" id="sc'+ai+'"></span></div></div>';
+    root.insertAdjacentHTML('beforeend',html);
+    var sels=root.querySelectorAll('#at'+ai+' select'), btn=document.getElementById('val'+ai);
+    sels.forEach(function(s){s.addEventListener('change',function(){btn.disabled=Array.prototype.some.call(sels,function(x){return x.value==='';});});});
+    btn.addEventListener('click',function(){
+      var ok=0;
+      items.forEach(function(it,ii){
+        var s=sels[ii], good=Number(s.value)===it.c, fb=document.getElementById('fb'+ai+'_'+ii);
+        s.classList.add(good?'ok':'ko'); s.disabled=true; if(good) ok++;
+        fb.className='fb show '+(good?'ok':'ko');
+        fb.innerHTML=(good?'<b>Exact.</b> ':'<b>Non. Bonne réponse : '+h(it.options[it.c])+'.</b> ')+h(it.e);
+      });
+      state[ai]={done:true,score:ok,max:items.length};
+      btn.disabled=true; btn.textContent='Atelier validé'; btn.classList.add('done');
+      document.getElementById('sc'+ai).textContent=ok+' / '+items.length+' bonnes réponses';
+      recap();
+    });
+  });
+  recap();
+}
+function recap(){
+  var d=state.filter(function(s){return s.done;}), sc=d.reduce(function(a,s){return a+s.score;},0), mx=d.reduce(function(a,s){return a+s.max;},0);
+  document.getElementById('nbv').textContent=d.length+' / '+DATA.length;
+  document.getElementById('tot').textContent=mx?sc+' / '+mx:'—';
+  document.getElementById('bar').style.width=(100*d.length/DATA.length)+'%';
+}
+document.getElementById('replay').addEventListener('click',function(){ if(confirm('Tout recommencer ? Toutes vos réponses seront effacées.')){state=DATA.map(function(){return {done:false,score:0,max:0};});render();window.scrollTo(0,0);} });
+render();
+</script>
+</body>
+</html>
