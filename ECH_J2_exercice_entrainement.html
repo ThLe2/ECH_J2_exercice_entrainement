@@ -55,7 +55,7 @@ footer.foot{text-align:center;color:var(--gmoy);font-size:12px;padding:20px 0}
 <header class="top"><div class="wrap"><div class="kick">TMK Performances · Eco Conso Habitat — Organisation et gestion du secteur · Jour 2</div><h1>Exercice d'entraînement — Jour 2</h1><div class="sub">Organiser et gérer efficacement son secteur · 4 ateliers</div></div></header>
 <main class="wrap">
 
-<div class="card"><div class="consigne"><b>Exercice d'entraînement, non noté.</b> Réalisez chaque atelier à la fin de la séquence indiquée. Quand vous validez un atelier, vos réponses sont <b>figées</b> et la correction s'affiche : impossible de les modifier ensuite. Pour tout recommencer, utilisez « Rejouer tout l'exercice ».</div>
+<div class="card"><div class="consigne"><b>Exercice d'entraînement, non noté.</b> Réalisez chaque atelier à la fin de la séquence indiquée. Quand vous validez un atelier, vos réponses sont <b>figées</b> et la correction s'affiche : impossible de les modifier ensuite. Gardez cette page ouverte toute la journée : si vous la rouvrez sur le même poste, vos ateliers déjà validés sont conservés. Pour tout recommencer, utilisez « Rejouer tout l'exercice ».</div>
 <div class="row" style="justify-content:space-between"><span>Ateliers validés : <span class="pill" id="nbv">0 / 4</span></span><span>Score cumulé : <span class="pill" id="tot">—</span></span></div>
 <div class="progress"><div id="bar"></div></div></div>
 <div id="ateliers"></div>
@@ -65,7 +65,11 @@ footer.foot{text-align:center;color:var(--gmoy);font-size:12px;padding:20px 0}
 <script>
 
 var DATA=[{"seq":"S02","titre":"Atelier A1 — Le bon créneau","consigne":"Pour chaque activité, choisissez le moment le plus adapté.","options":["Matin (9 h – 12 h)","Midi (12 h – 14 h)","Après-midi (14 h – 18 h)","Lundi ou vendredi"],"items":[{"txt":"Prospection terrain dans la zone prioritaire","c":0,"e":"Les meilleures heures pour l'action la plus dure."},{"txt":"Déplacement vers la zone de l'après-midi et organisation","c":1,"e":"Midi est un temps de transition."},{"txt":"Relances téléphoniques et RDV fixés","c":2,"e":"L'après-midi consolide : relances et RDV."},{"txt":"Préparation des zones et des trajets de la semaine","c":3,"e":"Le lundi prépare, le vendredi optimise."},{"txt":"Mise à jour du tableau de suivi et bilan de la semaine","c":3,"e":"Le vendredi : suivi, relances, optimisation."}],"bonus":{"txt":"Vous devez joindre M. Garnier, actif. Quel créneau privilégier ?","options":["10 h","12 h 30","15 h","Après 17 h 30"],"c":3,"e":"Les actifs sont joignables en fin de journée : adapter ses horaires à la cible."}},{"seq":"S03","titre":"Atelier A2 — Travail en zone","consigne":"Pour chaque pratique, indiquez s'il s'agit de travail en zone ou de ping-pong terrain.","options":["Travail en zone","Ping-pong terrain"],"items":[{"txt":"Faire un bloc de rues complet avant de changer de quartier","c":0,"e":"On épuise une zone avant d'en changer."},{"txt":"Revenir trois fois dans la semaine dans la même rue sans raison","c":1,"e":"Retours multiples sans logique."},{"txt":"Préparer la veille l'ordre des rues à parcourir","c":0,"e":"Anticiper les trajets."},{"txt":"Traverser la commune pour un seul contact « au cas où »","c":1,"e":"Déplacement sans rentabilité."},{"txt":"Regrouper deux zones voisines sur la même journée","c":0,"e":"Regrouper ses actions, limiter les trajets."},{"txt":"Choisir chaque matin une zone au hasard","c":1,"e":"Aucune stratégie géographique."}],"bonus":{"txt":"Tilleuls–Peupliers : 1,5 km ; Tilleuls–Clos des Érables : 7 km. Quelle zone associer aux Tilleuls le même jour ?","options":["Le Clos des Érables","Les Peupliers","La Résidence du Parc","Aucune, changer de commune"],"c":1,"e":"Deux zones prioritaires voisines : moins de trajet, plus de portes."}},{"seq":"S04","titre":"Atelier A3 — La bonne relance","consigne":"Pour chaque prospect, choisissez l'action de suivi adaptée (matrice intérêt / timing).","options":["RDV immédiat","Relance planifiée (2-3 mois, date précise)","Relance courte (quelques jours)","Relance occasionnelle"],"items":[{"txt":"Intérêt fort, projet réel, veut avancer tout de suite","c":0,"e":"Verrouiller la rencontre tout de suite."},{"txt":"Intérêt fort, travaux prévus au printemps","c":1,"e":"Fort + long terme : relance à date précise."},{"txt":"Intérêt moyen, compare les offres d'ici 15 jours","c":2,"e":"Moyen + court terme : rappel rapide."},{"txt":"Intérêt moyen, « un jour, pas cette année »","c":3,"e":"Maintenir le contact sans pression."},{"txt":"Intérêt fort, « rappelez-moi dans un mois »","c":1,"e":"Relance planifiée à la date demandée."}],"bonus":{"txt":"Quelle phrase crée une autorisation de relance ?","options":["« Je vous rappellerai de toute façon. »","« Je peux revenir vers vous à ce moment-là ? »","« Il faut vous décider vite. »","« Vous avez mon numéro. »"],"c":1,"e":"La relance devient un rendez-vous accepté, pas une pression."}},{"seq":"S05","titre":"Atelier A4 — Réseau réel ou virtuel ?","consigne":"Classez chaque levier dans le réseau réel ou virtuel.","options":["Réseau réel","Réseau virtuel"],"items":[{"txt":"Le gérant de la quincaillerie du centre-bourg","c":0,"e":"Commerçant local : relation humaine directe."},{"txt":"Le groupe Facebook du quartier","c":1,"e":"L'amplificateur digital."},{"txt":"Les voisins d'un client qui vient d'accepter un RDV","c":0,"e":"Le cœur du réseau : le voisinage."},{"txt":"Un groupe WhatsApp d'habitants","c":1,"e":"Réseau virtuel."},{"txt":"Un artisan plombier du secteur","c":0,"e":"Partenaire local."},{"txt":"Votre profil LinkedIn professionnel","c":1,"e":"Crédibilité en ligne."}],"bonus":{"txt":"Quelle demande de recommandation respecte les trois règles (naturel, simple, sans pression) ?","options":["« Donnez-moi trois noms, s'il vous plaît. »","« Est-ce que vous connaissez quelqu'un autour de vous qui pourrait être intéressé ? »","« Si vous me donnez des noms, je vous fais une remise. »","« Vos voisins doivent forcément être intéressés. »"],"c":1,"e":"Question ouverte, naturelle, sans contrepartie ni pression."}}];
-var state=DATA.map(function(){return {done:false,score:0,max:0};});
+var KEY='ECH_ex_'+"J2";
+function blank(){return DATA.map(function(){return {done:false,score:0,max:0,ans:null};});}
+function loadS(){try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.length===DATA.length)return s;}catch(e){}return blank();}
+function saveS(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+var state=loadS();
 function h(t){var d=document.createElement('div');d.textContent=t;return d.innerHTML;}
 function render(){
   var root=document.getElementById('ateliers');root.innerHTML='';
@@ -80,7 +84,7 @@ function render(){
     root.insertAdjacentHTML('beforeend',html);
     var sels=root.querySelectorAll('#at'+ai+' select'), btn=document.getElementById('val'+ai);
     sels.forEach(function(s){s.addEventListener('change',function(){btn.disabled=Array.prototype.some.call(sels,function(x){return x.value==='';});});});
-    btn.addEventListener('click',function(){
+    function validate(){
       var ok=0;
       items.forEach(function(it,ii){
         var s=sels[ii], good=Number(s.value)===it.c, fb=document.getElementById('fb'+ai+'_'+ii);
@@ -88,11 +92,13 @@ function render(){
         fb.className='fb show '+(good?'ok':'ko');
         fb.innerHTML=(good?'<b>Exact.</b> ':'<b>Non. Bonne réponse : '+h(it.options[it.c])+'.</b> ')+h(it.e);
       });
-      state[ai]={done:true,score:ok,max:items.length};
+      state[ai]={done:true,score:ok,max:items.length,ans:Array.prototype.map.call(sels,function(x){return x.value;})};
       btn.disabled=true; btn.textContent='Atelier validé'; btn.classList.add('done');
       document.getElementById('sc'+ai).textContent=ok+' / '+items.length+' bonnes réponses';
-      recap();
-    });
+      saveS(); recap();
+    }
+    btn.addEventListener('click',validate);
+    if(state[ai].done&&state[ai].ans){state[ai].ans.forEach(function(v,ii){if(sels[ii])sels[ii].value=v;});validate();}
   });
   recap();
 }
@@ -102,7 +108,7 @@ function recap(){
   document.getElementById('tot').textContent=mx?sc+' / '+mx:'—';
   document.getElementById('bar').style.width=(100*d.length/DATA.length)+'%';
 }
-document.getElementById('replay').addEventListener('click',function(){ if(confirm('Tout recommencer ? Toutes vos réponses seront effacées.')){state=DATA.map(function(){return {done:false,score:0,max:0};});render();window.scrollTo(0,0);} });
+document.getElementById('replay').addEventListener('click',function(){ if(confirm('Tout recommencer ? Toutes vos réponses seront effacées.')){state=blank();saveS();render();window.scrollTo(0,0);} });
 render();
 </script>
 </body>
